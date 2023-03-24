@@ -1,16 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {NavbarComp} from '../components/Navbar';
-import {Col, Container, ListGroup} from 'react-bootstrap';
+import {Col, Container} from 'react-bootstrap';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 import pizzadatabase from '../components/Pizzas';
 
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 
-import {useParams, Link} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
+
+/* Context */
+import  Context  from "../context";
 
 const Pizzas = () => {  
 
@@ -18,15 +21,27 @@ const Pizzas = () => {
 
     const pizzas = pizzadatabase;
 
-    console.log(pizzas)
+    const { cart, setCart } = useContext(Context);          
 
-    const pizza = pizzas.find(pizza => pizza.id ===  parseInt(id, 10));
-       
-      
+    const pizza = pizzas.find(pizza => pizza.id ===  parseInt(id, 10));  
 
-    console.log(id)
-    console.log("piza")
-    
+    /*Añade productos al cart*/
+    const addToCart = (id) => {    
+        const productoExistente = cart.find((p) => p.id === id);
+        if (productoExistente) {          
+            const nuevosProductos = cart.map((p) =>
+            p.id === id ? { ...p, cantidad: p.cantidad + 1 } : p
+        );
+            setCart(nuevosProductos);
+        } else {
+          // Si el producto no existe en el carrito, agregarlo como un nuevo elemento
+            const producto = pizzas.find((p) => p.id === id);
+            console.log(producto)
+        if (producto) {
+            setCart([...cart, { id, cantidad: 1 }]);
+        }
+        }
+    };
 
     return (
         <>
@@ -43,7 +58,7 @@ const Pizzas = () => {
                         {pizza.description}                 
                     </Card.Body>                   
                     <Card.Body>                     
-                    <Button className="justify-content-center" variant="danger" >
+                    <Button className="justify-content-center" variant="danger" onClick={() => addToCart(pizza.id)}>
                         Añadir                      
                     </Button>                     
                     </Card.Body>

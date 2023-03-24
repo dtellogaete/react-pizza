@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 import {NavbarComp} from '../components/Navbar';
 
 import {Col, Container, Form, Button} from 'react-bootstrap';
@@ -42,7 +41,7 @@ const Contacto = () => {
                         <Form.Control as="textarea" rows={3} />
                     </Form.Group>                   
                     <Button variant="danger" type="submit" >
-                        Enviar Formulario &#127790;
+                        Enviar Formulario
                     </Button>
                     </Form>                                              
                 </Col>                      

@@ -10,8 +10,8 @@ const NotFound = () => {
             <NavbarComp/>
             <Container style = {{ display: 'flex'}} className="back">
                 <Col className="text-center">
-                    <h1 className="text-center">Página no encontrada &#127790;</h1>                    
-                    <img src="https://cdn.pixabay.com/photo/2013/07/13/09/37/taco-155812_960_720.png" alt='taco' width="400"  height="341"></img>                    
+                    <h1 className="text-center">Página no encontrada</h1>                    
+                    <img src="https://images.pexels.com/photos/3581878/pexels-photo-3581878.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt='pizza' width="280"  height="400"></img>                    
                 </Col>                      
             </Container>                  
         </>
